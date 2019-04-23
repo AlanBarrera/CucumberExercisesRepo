@@ -2,6 +2,9 @@ package cucumberTest;
 
 public class Constants
 {
+	// Gecko Driver Route
+	public static final String GECKO_DRIVER_ROUTE = "/Users/alanbarrera/git/CucumberExercisesRepo/CucumberExercises/geckodriver";
+	
 	// URIs
 	public static final String HOME_URL = "http://newtours.demoaut.com/";
 	public static final String SUCCESSFUL_REGISTRATION_URL = "http://newtours.demoaut.com/create_account_success.php";
