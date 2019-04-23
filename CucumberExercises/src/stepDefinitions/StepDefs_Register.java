@@ -1,46 +1,34 @@
-package cucumberTest;
+package stepDefinitions;
+
+import main.Constants;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class SeleniumTest {
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
-	public static WebDriver driver;
+public class StepDefs_Register 
+{
+	private WebDriver driver;
 	
-	public static void main(String[] args)
+	@Before
+	public void SetUp()
 	{
-		// Set the Gecko Driver.
-		System.setProperty("webdriver.gecko.driver", "/Users/alanbarrera/git/CucumberExercisesRepo/CucumberExercises/geckodriver");
+		driver = new FirefoxDriver();
 		
-		try
-		{
-			// Run the exercises.
-			ScenarioOne();
-	
-		}
-		catch(Exception ex)
-		{
-			// Print in the console any error.
-			System.out.println("An error has ocurred: " + ex);
-		}
-		finally
-		{
-			// Make sure to quit the driver.
-			if(driver != null)
-			{
-				driver.quit();
-			}
-				
-		}
+		// Set the Gecko Driver.
+		System.setProperty("webdriver.gecko.driver", Constants.GECKO_DRIVER_ROUTE);
 	}
 	
-	public static void ScenarioOne() throws InterruptedException
+	@Given("^I am a new user$")
+	public void i_am_a_new_user() throws InterruptedException 
 	{
-		// Launch a new Firefox browser.
-		driver = new FirefoxDriver();
-				
 		// Open http://newtours.demoaut.com/.
 		driver.get(Constants.HOME_URL);
 		
@@ -49,7 +37,11 @@ public class SeleniumTest {
 		
 		// Delay to see what is happening.
 		Thread.sleep(1500);
-		
+	}
+
+	@When("^I register my data correctly in the page for a new user$")
+	public void i_register_my_data_correctly_in_the_page_for_a_new_user() throws InterruptedException 
+	{
 		// Fill the form.
 		
 		// Contact information
@@ -82,19 +74,24 @@ public class SeleniumTest {
 		driver.findElement(By.name("register")).submit();
 		
 		// Give time to the page to load.
-		Thread.sleep(1000);
-		
+		Thread.sleep(10000);
+	}
+
+	@Then("^I should get a welcome message$")
+	public void i_should_get_a_welcome_message() throws InterruptedException
+	{
 		// Check whether the registration was successful.
 		boolean isRegistrationSuccessful = driver.getCurrentUrl().equalsIgnoreCase(Constants.SUCCESSFUL_REGISTRATION_URL);
 		
 		// Print the result.
 		System.out.println("The registration was " + (isRegistrationSuccessful ? "successful" : "unsuccessful") + ".");
-		
-		// Delay to see what is happening.
-		Thread.sleep(3000);
-		
-		// Close the browser.
-		driver.quit();
+	}
+	
+	@After
+	public void CleanUp()
+	{
+		if (driver != null)
+			driver.quit();
 	}
 
 }

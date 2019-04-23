@@ -1,4 +1,4 @@
-package cucumberTest;
+package main;
 
 public class Constants
 {
