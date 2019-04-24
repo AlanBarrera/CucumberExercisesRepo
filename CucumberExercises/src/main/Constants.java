@@ -12,6 +12,7 @@ public class Constants
 	// Registration data
 	
 	public static final String FIRST_NAME = "Abraham";
+	public static final String MIDDLE_NAME = "Norton";
 	public static final String LAST_NAME = "Lincoln";
 	public static final String PHONE = "770-693-2989";
 	public static final String EMAIL = "abraham@lincoln.com";
@@ -22,4 +23,9 @@ public class Constants
 	public static final String COUNTRY = "UGANDA"; // NY is not in UGANDA but I changed it anyways.
 	public static final String USERNAME = "alincon";
 	public static final String PASSWORD = "dummyPass";
+	public static final String CREDIT_CARD = "4556 7585 5118 5021";
+	
+	// Login data
+	
+	public static final String USER_PASSWORD = "mercury";
 }

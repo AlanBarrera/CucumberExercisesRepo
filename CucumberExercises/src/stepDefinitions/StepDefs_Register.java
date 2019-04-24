@@ -17,13 +17,14 @@ public class StepDefs_Register
 {
 	private WebDriver driver;
 	
-	@Before
+	@Before("@register")
 	public void SetUp()
 	{
-		driver = new FirefoxDriver();
-		
 		// Set the Gecko Driver.
 		System.setProperty("webdriver.gecko.driver", Constants.GECKO_DRIVER_ROUTE);
+		
+		// Initialize driver
+		driver = new FirefoxDriver();
 	}
 	
 	@Given("^I am a new user$")
@@ -74,7 +75,7 @@ public class StepDefs_Register
 		driver.findElement(By.name("register")).submit();
 		
 		// Give time to the page to load.
-		Thread.sleep(10000);
+		Thread.sleep(3000);
 	}
 
 	@Then("^I should get a welcome message$")
@@ -87,7 +88,7 @@ public class StepDefs_Register
 		System.out.println("The registration was " + (isRegistrationSuccessful ? "successful" : "unsuccessful") + ".");
 	}
 	
-	@After
+	@After("@register")
 	public void CleanUp()
 	{
 		if (driver != null)
